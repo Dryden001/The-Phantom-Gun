@@ -77,10 +77,10 @@ public class PlayerMovementScript : MonoBehaviour
         bool isGrounded = CheckIfGrounded();
         
 
-        if(isGrounded && jump && deviceRightjump.TryGetFeatureValue(CommonUsages.primaryButton, out jump)){            
+        /*if(isGrounded && jump && deviceRightjump.TryGetFeatureValue(CommonUsages.primaryButton, out jump)){            
             //this.GetComponent<Rigidbody>().AddForce(0,jumpspeed,0, ForceMode.Impulse);
             this.GetComponent<Rigidbody>().velocity = new Vector3(0,jumpspeed,0);
-        }
+        }*/
 
         if(!gunheld && gunbelt){
             Gun.transform.position = this.transform.position + new Vector3(0, 3/4, 0);
