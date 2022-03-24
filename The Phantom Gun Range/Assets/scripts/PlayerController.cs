@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     //private int GunState = 0;
     public static int ammomax = 6;
     public static int ammo;
-    //private bool shot = false;
+    
 
     //Stops game at the end
     private bool isplaying = true;
@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
     //shoot gun
     void fireBullet()
     {
+
         audioSource.PlayOneShot(SoundManager.Instance.gunFire);
         Rigidbody bullet = createBullet();
         //bullet.velocity = (AimPosition.position - launchPosition.position) / projectilespeedmod;
@@ -93,9 +94,13 @@ public class PlayerController : MonoBehaviour
     //bullet been shot
     private Rigidbody createBullet(){
         GameObject bullet = Instantiate(bulletPrefab) as GameObject;
+        Bullet bulletscript = bullet.GetComponent<Bullet>();
+        bulletscript.bulletstate = "shot";
         bullet.transform.position = launchPosition.position;
         return bullet.GetComponent<Rigidbody>();
     }
+    
+
     //game has been ended
     public void gameactive(bool GA){
         isplaying = GA;
