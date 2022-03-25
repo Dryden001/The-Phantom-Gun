@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Bullet : MonoBehaviour
 {
@@ -15,28 +16,30 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }*/
 
-    //public PlayerController Pc;
-
     public string bulletstate = "Sit"; //Sit, loaded, shot, fly
+    public Transform gunpos;
+    private NavMeshAgent agent;
 
-    /*void Awake(){
-        Pc = GameObject.FindObjectOfType<PlayerController> ();
-    }*/
     private void OnCollisionEnter(Collision collision){
         if(bulletstate == "shot"){
             bulletstate = "fly";
+            
         }else if((bulletstate == "Sit" || bulletstate == "fly")&& collision.gameObject.layer == 11){
             //++Pc.ammo;
             //Destroy(gameObject);
         }
     }
 
+    void Start(){
+        NavMeshAgent agent = GetComponent<NavMeshAgent>();
+    }
     void Update ()
     {
         if(bulletstate == "Sit"){
 
         }else if(bulletstate == "fly"){
-            
+           
+            agent.destination = gunpos.position;
         }        
 	}
 }
