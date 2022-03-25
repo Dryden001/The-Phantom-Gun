@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
             bulletstate = "fly";
         }else if((bulletstate == "Sit" || bulletstate == "fly")&& collision.gameObject.layer == 11){
             //++Pc.ammo;
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 

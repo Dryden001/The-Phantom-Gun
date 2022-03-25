@@ -41,7 +41,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 GunPos = Vector3.zero;
     //private int GunState = 0;
     public static int ammomax = 6;
-    public static int ammo;
+    public int ammo;
+    //public static int ammo;
     
 
     //Stops game at the end
