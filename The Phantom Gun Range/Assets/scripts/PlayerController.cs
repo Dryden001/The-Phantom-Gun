@@ -78,9 +78,11 @@ public class PlayerController : MonoBehaviour
         }
         
     }
+    public void Updateammo(){
+        UoI.UpdateAmmo(ammo,ammomax);
+    }
 	void Update ()
     {
-        
         
 	}
     
@@ -89,7 +91,7 @@ public class PlayerController : MonoBehaviour
         bulletO.transform.position = launchPosition.position;
         Bullet bulletscript = bulletO.GetComponent<Bullet>();
         bulletscript.bulletstate = "shot";
-        
+        Debug.Log("shot");  
         bulletO.GetComponent<Rigidbody>().velocity = launchPosition.forward * projectilespeedmod;
     }
 

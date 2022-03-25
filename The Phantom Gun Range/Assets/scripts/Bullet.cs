@@ -18,44 +18,58 @@ public class Bullet : MonoBehaviour
 
     public string bulletstate = "Sit"; //Sit, loaded, shot, fly
     public GameObject gunpos;
-    public NavMeshAgent agent;
+    private NavMeshAgent agent;
     public PlayerController Pc;
+    public string butype;
+    public GameObject otherbullet;
 
-    private void OnCollisionEnter(Collision collision){
+    /*private void OnCollisionEnter(Collision collision){
         if(bulletstate == "shot"){
             bulletstate = "fly";
             
         }/*else if((bulletstate == "Sit" || bulletstate == "fly")&& collision.gameObject.layer == 11){
             //++Pc.ammo;
             //Destroy(gameObject);
-        }*/
+        }
+    }*/
+    private void OnCollisionEnter(Collision collision){
+        if(bulletstate == "shot"){
+            bulletstate = "fly";
+           //Debug.Log("collide");
+        }
     }
 void Awake(){
         Pc = GameObject.FindObjectOfType<PlayerController> ();
     }
     void Start(){
-        NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        
-        
+        agent = this.GetComponent<NavMeshAgent>();
+        //this.GetComponent<NavMeshAgent>().enabled = false;
     }
     void FixedUpdate ()
     {
         if(bulletstate == "Sit"){
-        }else if(bulletstate == "fly"){           
-            NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        }else if(bulletstate == "fly"){    
+            this.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
+            Debug.Log(bulletstate);  
+            //this.GetComponent<NavMeshAgent>().enabled = true;     
             agent.destination = gunpos.transform.position;
-            //agent.destination = new Vector3(0, 0, 0);
+            //agent.destination = new Vector3(0, 10, 0);
+            Debug.Log(gunpos.transform.position);
         }     
-        Debug.Log(bulletstate);   
+        
 	}
     void Update(){
         if(Vector3.Distance(this.transform.position, gunpos.transform.position) < 1 && bulletstate != "shot"){
+            
+            Debug.Log(bulletstate);  
             bulletstate = "loaded";
-            NavMeshAgent agent = GetComponent<NavMeshAgent>();
-            agent.destination = this.transform.position;
             this.transform.position = new Vector3(0,-30, 0);
+            //agent.destination = this.transform.position;
+            
+            //this.GetComponent<NavMeshAgent>().enabled = false;
+            
             ++Pc.ammo;
+            Pc.Updateammo();
         }
-        Debug.Log(bulletstate);  
     }
 }
