@@ -17,27 +17,45 @@ public class Bullet : MonoBehaviour
     }*/
 
     public string bulletstate = "Sit"; //Sit, loaded, shot, fly
-    public Transform gunpos;
-    private NavMeshAgent agent;
+    public GameObject gunpos;
+    public NavMeshAgent agent;
+    public PlayerController Pc;
 
     private void OnCollisionEnter(Collision collision){
         if(bulletstate == "shot"){
             bulletstate = "fly";
             
-        }else if((bulletstate == "Sit" || bulletstate == "fly")&& collision.gameObject.layer == 11){
+        }/*else if((bulletstate == "Sit" || bulletstate == "fly")&& collision.gameObject.layer == 11){
             //++Pc.ammo;
             //Destroy(gameObject);
-        }
+        }*/
     }
-
+void Awake(){
+        Pc = GameObject.FindObjectOfType<PlayerController> ();
+    }
     void Start(){
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        
+        
     }
     void FixedUpdate ()
     {
         if(bulletstate == "Sit"){
         }else if(bulletstate == "fly"){           
-            agent.destination = gunpos.position;
-        }        
+            NavMeshAgent agent = GetComponent<NavMeshAgent>();
+            agent.destination = gunpos.transform.position;
+            //agent.destination = new Vector3(0, 0, 0);
+        }     
+        Debug.Log(bulletstate);   
 	}
+    void Update(){
+        if(Vector3.Distance(this.transform.position, gunpos.transform.position) < 1 && bulletstate != "shot"){
+            bulletstate = "loaded";
+            NavMeshAgent agent = GetComponent<NavMeshAgent>();
+            agent.destination = this.transform.position;
+            this.transform.position = new Vector3(0,-30, 0);
+            ++Pc.ammo;
+        }
+        Debug.Log(bulletstate);  
+    }
 }

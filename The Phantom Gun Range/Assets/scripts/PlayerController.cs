@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     //game object attachement
     public GameObject bulletPrefab;
+    public GameObject bulletO;
     public GameObject Gun;
     public Rigidbody Gunrigid;
     public Transform facingdirection;
@@ -83,10 +84,18 @@ public class PlayerController : MonoBehaviour
         
 	}
     
-    //shoot gun
+    void fireBullet(){
+        audioSource.PlayOneShot(SoundManager.Instance.gunFire);
+        bulletO.transform.position = launchPosition.position;
+        Bullet bulletscript = bulletO.GetComponent<Bullet>();
+        bulletscript.bulletstate = "shot";
+        
+        bulletO.GetComponent<Rigidbody>().velocity = launchPosition.forward * projectilespeedmod;
+    }
+
+    /*//shoot gun
     void fireBullet()
     {
-
         audioSource.PlayOneShot(SoundManager.Instance.gunFire);
         Rigidbody bullet = createBullet();
         //bullet.velocity = (AimPosition.position - launchPosition.position) / projectilespeedmod;
@@ -99,7 +108,7 @@ public class PlayerController : MonoBehaviour
         bulletscript.bulletstate = "shot";
         bullet.transform.position = launchPosition.position;
         return bullet.GetComponent<Rigidbody>();
-    }
+    }*/
     
 
     //game has been ended
