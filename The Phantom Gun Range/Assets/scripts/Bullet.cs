@@ -33,7 +33,7 @@ public class Bullet : MonoBehaviour
     void Start(){
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
     }
-    void Update ()
+    void FixedUpdate ()
     {
         if(bulletstate == "Sit"){
 
