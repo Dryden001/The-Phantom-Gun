@@ -36,9 +36,7 @@ public class Bullet : MonoBehaviour
     void FixedUpdate ()
     {
         if(bulletstate == "Sit"){
-
-        }else if(bulletstate == "fly"){
-           
+        }else if(bulletstate == "fly"){           
             agent.destination = gunpos.position;
         }        
 	}
