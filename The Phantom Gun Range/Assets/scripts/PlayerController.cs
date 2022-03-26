@@ -88,7 +88,9 @@ public class PlayerController : MonoBehaviour
     
     void fireBullet(){
         audioSource.PlayOneShot(SoundManager.Instance.gunFire);
+        
         bulletO.transform.position = launchPosition.position;
+        bulletO.SetActive(true);
         Bullet bulletscript = bulletO.GetComponent<Bullet>();
         bulletscript.bulletstate = "shot";
         Debug.Log("shot");  
