@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     
     //Gun info
     private Vector3 GunPos = Vector3.zero;
+    public Animator gunanimator;
     //private int GunState = 0;
     public static int ammomax = 6;
     public int ammo;
@@ -75,8 +76,12 @@ public class PlayerController : MonoBehaviour
                     fireBullet(); //invokes bullet
                     --ammo;
                     UoI.UpdateAmmo(ammo,ammomax);
+                    gunanimator.SetBool("shootgun", true);
         }
         
+    }
+    public void releasetrigger(){
+        gunanimator.SetBool("shootgun", false);
     }
     public void Updateammo(){
         UoI.UpdateAmmo(ammo,ammomax);
