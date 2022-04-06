@@ -17,10 +17,10 @@ public class startUI : MonoBehaviour
         
     }
     //start game button
-    public void startgame(){
+    public void startgame(string level){
         Debug.Log("start");
         SoundManager.Instance.PlayOneShot(SoundManager.Instance.Buttonpress);
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene(level);
     }
     //exit game button
     public void exitgame(){

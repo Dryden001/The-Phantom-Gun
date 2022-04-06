@@ -16,15 +16,19 @@ public class PlayerMovementScript : MonoBehaviour
     private XRRig rig;
     private Vector2 inputAxis;
     private CharacterController character;
-    private bool jump = false;
+    //private bool jump = false;
     private bool TPGun = false;
     private bool catchGun = false;
+    private bool menuon = false;
+    private int wasmenuon = -1;
+    private bool menuononce = false;
     public float jumpspeed;
 
     InputDevice deviceLeftmove;
     InputDevice deviceLeftcatch;
     InputDevice deviceLeftTP;
-    InputDevice deviceRightjump;
+    InputDevice devicemenu;
+    //InputDevice deviceRightjump;
 
     public GameObject Gun;
     private bool gunheld = false;
@@ -34,7 +38,14 @@ public class PlayerMovementScript : MonoBehaviour
     public GameObject gamevisend;
     public Transform cam;
 
-    // Start is called before the first frame update
+    private endUI EUI;
+    private UI Gui;
+    
+    void Awake(){
+        EUI = GameObject.FindObjectOfType<endUI> ();
+        Gui = GameObject.FindObjectOfType<UI> ();
+        //find end game UI
+    }
     void Start()
     {
         character = GetComponent<CharacterController>();
@@ -46,20 +57,21 @@ public class PlayerMovementScript : MonoBehaviour
         deviceLeftmove = InputDevices.GetDeviceAtXRNode(inputSourceLeft);
         deviceLeftcatch = InputDevices.GetDeviceAtXRNode(inputSourceLeft);
         deviceLeftTP = InputDevices.GetDeviceAtXRNode(inputSourceLeft);
-        deviceRightjump = InputDevices.GetDeviceAtXRNode(inputSourceRight);
+        //deviceRightjump = InputDevices.GetDeviceAtXRNode(inputSourceRight);
+        devicemenu = InputDevices.GetDeviceAtXRNode(inputSourceLeft);
     }
     // Update is called once per frame
     void Update()
     {
-        if(!deviceLeftmove.isValid || !deviceRightjump.isValid || !deviceLeftcatch.isValid || !deviceLeftTP.isValid){
+        if(!deviceLeftmove.isValid || !devicemenu.isValid || !deviceLeftcatch.isValid || !deviceLeftTP.isValid){
             VRstart();
         } else{
 
             deviceLeftmove.TryGetFeatureValue(CommonUsages.primary2DAxis, out inputAxis);
             deviceLeftcatch.TryGetFeatureValue(CommonUsages.primaryButton, out catchGun);
             deviceLeftTP.TryGetFeatureValue(CommonUsages.secondaryButton, out TPGun);
-
-            deviceRightjump.TryGetFeatureValue(CommonUsages.primaryButton, out jump);
+            devicemenu.TryGetFeatureValue(CommonUsages.menuButton, out menuon);
+            //deviceRightjump.TryGetFeatureValue(CommonUsages.primaryButton, out jump);
         }
         gamevis.transform.eulerAngles = new Vector3(0, cam.eulerAngles.y, 0);
         gamevisend.transform.eulerAngles = new Vector3(0, cam.eulerAngles.y, 0);
@@ -108,6 +120,18 @@ public class PlayerMovementScript : MonoBehaviour
         } else{
             Gun.GetComponent<Rigidbody>().useGravity = true;
         }
+        if(devicemenu.TryGetFeatureValue(CommonUsages.menuButton, out menuon)&& menuon && !menuononce){
+            
+            menuononce = true;
+            wasmenuon *= -1;
+            if(wasmenuon == 1){
+                EUI.score(Gui.gamescore, "--:--:--");
+            }else{
+                EUI.closemenu();
+            }
+                
+        }else if(devicemenu.TryGetFeatureValue(CommonUsages.menuButton, out menuon)&& !menuon){menuononce = false;}
+        
     }
 void CapsuleFollowHeadset(){
     character.height = rig.cameraInRigSpaceHeight + additionalHeight;

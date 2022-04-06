@@ -27,7 +27,7 @@ public class UI : MonoBehaviour
     float hmsec;
     float hsec;
     float hmin;
-    string gamescore;
+    public string gamescore;
     string ghscore;
     bool bsave;
     //Game time / score

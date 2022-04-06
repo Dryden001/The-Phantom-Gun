@@ -58,5 +58,11 @@ public class endUI : MonoBehaviour
         SceneManager.LoadScene("StartScreen");
 
     }
+
+    public void closemenu(){
+        Pcntrl.gameactive(true);
+        canvasscore.SetActive(false);
+        Rayguy.SetActive(false);
+    }
     
 }
