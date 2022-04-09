@@ -9,6 +9,7 @@ public class target : MonoBehaviour
     public bool isup = true;
     public Transform player;
     public GameObject ttarget;
+    public bool isgargoyle = false;
 
     //target identifies UI script
     private UI UoI;
@@ -25,7 +26,9 @@ public class target : MonoBehaviour
     //target follows player to allways look at it
     void Update()
     {
-        this.transform.rotation = player.rotation;
+        if(!isgargoyle){
+            this.transform.rotation = player.rotation;
+        }
     }
     //target gets shot
     void OnTriggerEnter(Collider other){

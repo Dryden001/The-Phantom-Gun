@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour
     private Vector3 lastpos;
 
     private void OnCollisionEnter(Collision collision){
-        if(collision.gameObject.layer != 11){
+        if(collision.gameObject.layer != 11 && bulletstate != "Sit"){
            bulletstate = "fly";
            
         }
@@ -33,7 +33,7 @@ public class Bullet : MonoBehaviour
         Pc = GameObject.FindObjectOfType<PlayerController> ();
     }
     void Start(){
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
     }
     void Update(){
         if(bulletstate == "Sit"){
