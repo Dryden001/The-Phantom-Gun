@@ -10,6 +10,7 @@ public class AIBullett : MonoBehaviour
     private NavMeshAgent agent;
     public PlayerController Pc;
     public GameObject otherbullet;
+    private Vector3 gunpos2d;
 
     /*private void OnCollisionEnter(Collision collision){
         if(bulletstate == "shot"){
@@ -28,20 +29,25 @@ void Awake(){
         this.gameObject.SetActive(false);
         //this.GetComponent<NavMeshAgent>().enabled = false;
     }
+    
     void FixedUpdate ()
     {
         if(bulletstate == "fly"){  
-            //this.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
-              
-            //this.GetComponent<NavMeshAgent>().enabled = true;     
-            agent.destination = gunpos.transform.position;
-            //agent.destination = new Vector3(0, 10, 0);
+            RaycastHit hit;
+            if(Physics.Raycast(gunpos.transform.position, new Vector3(0,-2,0), out hit, Mathf.Infinity)){
+                agent.destination = hit.point;
+            }else{
+               agent.destination = gunpos.transform.position; 
+            }  
+            
+            //agent.destination = gunpos.transform.position;
+            
             Debug.Log(gunpos.transform.position);
         }     
         
-	}
-    void Update(){
-        if(Vector3.Distance(this.transform.position, gunpos.transform.position) < 1 && bulletstate != "shot"){
+        gunpos2d = new Vector3(gunpos.transform.position.x, this.transform.position.y, gunpos.transform.position.z);
+
+        if(Vector3.Distance(this.transform.position, gunpos2d) < 1 && bulletstate != "shot"){
             
             Debug.Log(bulletstate);  
             //bulletstate = "loaded";
@@ -54,5 +60,22 @@ void Awake(){
             Pc.Updateammo();
             this.gameObject.SetActive(false);
         }
-    }
+	}
+    /*void Update(){
+        gunpos2d = new Vector3(gunpos.transform.position.x, this.transform.position.y, gunpos.transform.position.z);
+
+        if(Vector3.Distance(this.transform.position, gunpos2d) < 1 && bulletstate != "shot"){
+            
+            Debug.Log(bulletstate);  
+            //bulletstate = "loaded";
+            //this.transform.position = new Vector3(0,-30, 0);
+            //agent.destination = this.transform.position;
+            
+            //this.GetComponent<NavMeshAgent>().enabled = false;
+            
+            ++Pc.ammo;
+            Pc.Updateammo();
+            this.gameObject.SetActive(false);
+        }
+    }*/
 }

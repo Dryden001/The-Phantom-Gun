@@ -2418,6 +2418,7 @@ MonoBehaviour:
   gamevis: {fileID: 2607482944859115721}
   gamevisend: {fileID: 2607482943594868657}
   cam: {fileID: 2607482943529280271}
+  neolights: {fileID: 0}
 --- !u!143 &2607482944924373082
 CharacterController:
   m_ObjectHideFlags: 0

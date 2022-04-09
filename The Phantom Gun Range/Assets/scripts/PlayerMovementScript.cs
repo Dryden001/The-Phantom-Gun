@@ -40,6 +40,8 @@ public class PlayerMovementScript : MonoBehaviour
 
     private endUI EUI;
     private UI Gui;
+
+    public GameObject neolights;
     
     void Awake(){
         EUI = GameObject.FindObjectOfType<endUI> ();
@@ -95,7 +97,7 @@ public class PlayerMovementScript : MonoBehaviour
         }*/
 
         if(!gunheld && gunbelt){
-            Gun.transform.position = this.transform.position + new Vector3(0, 3/4, 0);
+            //Gun.transform.position = this.transform.position + new Vector3(0, 3/4, 0);
             Gun.transform.eulerAngles = new Vector3(0, cam.eulerAngles.y, 0);
             Gun.GetComponent<Rigidbody>().useGravity = false;
         }
@@ -103,6 +105,7 @@ public class PlayerMovementScript : MonoBehaviour
         if(deviceLeftcatch.TryGetFeatureValue(CommonUsages.primaryButton, out catchGun) && catchGun && !TPGun){
             if(!gunheld){
                 Gun.transform.position = this.transform.position + new Vector3(0, 3/4, 0);
+                //Gun.transform.parent = this.transform;
                 gunbelt = true;
             }
         }
@@ -148,9 +151,15 @@ void CapsuleFollowHeadset(){
     }
     public void Gunheld(){
         gunheld = true;
+        if(neolights != null){
+            neolights.SetActive(true);
+        }
     }
     public void GunNothel(){
         gunheld = false;
+        if(neolights != null){
+            neolights.SetActive(false);
+        }
     }
 
 }
