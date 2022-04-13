@@ -52407,6 +52407,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Projectile
       objectReference: {fileID: 0}
+    - target: {fileID: 1921114873571544595, guid: 8cf399e85cdd1114388eed9359c1e714,
+        type: 3}
+      propertyPath: m_TagString
+      value: hittarget
+      objectReference: {fileID: 0}
     - target: {fileID: 6425935565996939339, guid: 8cf399e85cdd1114388eed9359c1e714,
         type: 3}
       propertyPath: Pc
@@ -52642,6 +52647,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GUN
       objectReference: {fileID: 0}
+    - target: {fileID: 4772748844599803345, guid: 3054a5b601971c0459f602146f37ded9,
+        type: 3}
+      propertyPath: m_TagString
+      value: hittarget
+      objectReference: {fileID: 0}
     - target: {fileID: 4772748844599803349, guid: 3054a5b601971c0459f602146f37ded9,
         type: 3}
       propertyPath: m_OnActivate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -52716,6 +52726,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7896250062169462249, guid: 3054a5b601971c0459f602146f37ded9,
+        type: 3}
+      propertyPath: m_TagString
+      value: hittarget
       objectReference: {fileID: 0}
     - target: {fileID: 7896250062169462254, guid: 3054a5b601971c0459f602146f37ded9,
         type: 3}

@@ -32,7 +32,7 @@ public class target : MonoBehaviour
     }
     //target gets shot
     void OnTriggerEnter(Collider other){
-        if (isup){
+        if (isup && other.tag =="hittarget"){
             shot();
         }
     }

@@ -121,9 +121,16 @@ public class UI : MonoBehaviour
 
     private Save CreateSaveGameObject(){
         Save save = new Save();
-        save.highscoremin = min;
-        save.highscoresec = sec;
-        save.highscoremsec = msec;
+        Scene scene = SceneManager.GetActiveScene();
+        if(scene.name == "Game"){
+            save.highscoremin = min;
+            save.highscoresec = sec;
+            save.highscoremsec = msec;
+        }else if(scene.name == "Story"){
+            save.Shighscoremin = min;
+            save.Shighscoresec = sec;
+            save.Shighscoremsec = msec;
+        }
         hmin = min;
         hsec = sec;
         hmsec = msec;
@@ -149,9 +156,16 @@ public class UI : MonoBehaviour
             FileStream file = File.Open(Application.persistentDataPath + "/gamevrsave.save", FileMode.Open);
             Save save = (Save)bf.Deserialize(file);
             file.Close();
-            hmin = save.highscoremin;
-            hsec = save.highscoresec;
-            hmsec = save.highscoremsec;
+            Scene scene = SceneManager.GetActiveScene();
+            if(scene.name == "Game"){
+                hmin = save.highscoremin;
+                hsec = save.highscoresec;
+                hmsec = save.highscoremsec;
+            }else if(scene.name == "Story"){
+                hmin = save.Shighscoremin;
+                hsec = save.Shighscoresec;
+                hmsec = save.Shighscoremsec;
+            }
             Debug.Log("Game Loaded");
         }else{
             hmin = 99;

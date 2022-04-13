@@ -9,4 +9,8 @@ public class Save
     public float highscoremin = 0;
     public float highscoresec = 0;
     public float highscoremsec = 0;
+
+    public float Shighscoremin = 0;
+    public float Shighscoresec = 0;
+    public float Shighscoremsec = 0;
 }
