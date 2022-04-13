@@ -105,7 +105,7 @@ public class PlayerMovementScript : MonoBehaviour
         if(deviceLeftcatch.TryGetFeatureValue(CommonUsages.primaryButton, out catchGun) && catchGun && !TPGun){
             if(!gunheld){
                 Gun.transform.position = this.transform.position + new Vector3(0, 3/4, 0);
-                //Gun.transform.parent = this.transform;
+                Gun.transform.parent = this.transform;
                 gunbelt = true;
             }
         }
@@ -113,6 +113,7 @@ public class PlayerMovementScript : MonoBehaviour
             if(!gunheld){
                 this.transform.position = Gun.transform.position + new Vector3(0,1/2,0); //adds height to position to prevent falling through floor
                 //Gun.transform.position = this.transform.position + new Vector3(0, 1/2, 0);
+                Gun.transform.parent = this.transform;
                 Gun.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
                 gunbelt = true;
             }
