@@ -22,6 +22,8 @@ public class Bullet : MonoBehaviour
 
     private Vector3 lastpos;
 
+    private AudioSource audioSource;
+
     private void OnCollisionEnter(Collision collision){
         if(collision.gameObject.layer != 11 && bulletstate != "Sit"){
            bulletstate = "fly";
@@ -34,6 +36,7 @@ public class Bullet : MonoBehaviour
     }
     void Start(){
         //this.gameObject.SetActive(false);
+        audioSource = GetComponent<AudioSource>();
     }
     void Update(){
         if(bulletstate == "Sit"){
@@ -48,6 +51,7 @@ public class Bullet : MonoBehaviour
                 
                 ++Pc.ammo;
                 Pc.Updateammo();
+                //audioSource.PlayOneShot(SoundManager.Instance.reloadS);
                 this.gameObject.SetActive(false);
             }
         }

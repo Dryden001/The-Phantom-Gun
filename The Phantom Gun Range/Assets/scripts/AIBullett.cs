@@ -12,6 +12,8 @@ public class AIBullett : MonoBehaviour
     public GameObject otherbullet;
     private Vector3 gunpos2d;
 
+    private AudioSource audioSource;
+
     /*private void OnCollisionEnter(Collision collision){
         if(bulletstate == "shot"){
             bulletstate = "fly";
@@ -26,7 +28,9 @@ void Awake(){
     }
     void Start(){
         agent = this.GetComponent<NavMeshAgent>();
+        audioSource = GetComponent<AudioSource>();
         this.gameObject.SetActive(false);
+        
         //this.GetComponent<NavMeshAgent>().enabled = false;
     }
     
@@ -58,6 +62,7 @@ void Awake(){
             
             ++Pc.ammo;
             Pc.Updateammo();
+            //audioSource.PlayOneShot(SoundManager.Instance.reloadS);
             this.gameObject.SetActive(false);
         }
 	}

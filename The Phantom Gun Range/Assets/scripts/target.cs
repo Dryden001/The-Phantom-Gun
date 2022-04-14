@@ -10,6 +10,7 @@ public class target : MonoBehaviour
     public Transform player;
     public GameObject ttarget;
     public bool isgargoyle = false;
+    public GameObject deatheffect;
 
     //target identifies UI script
     private UI UoI;
@@ -33,11 +34,18 @@ public class target : MonoBehaviour
     //target gets shot
     void OnTriggerEnter(Collider other){
         if (isup && other.tag =="hittarget"){
-            shot();
+           
+            if(other.gameObject.layer == 8 || !isgargoyle){
+                shot();
+            }
         }
     }
     //target gets hidden and tells UI its been shot
     public void shot(){
+        if(isgargoyle){
+            deatheffect.SetActive(true);
+            deatheffect.transform.parent = null;
+        }
         ttarget.SetActive(false);
         UoI.JScore();
         SoundManager.Instance.PlayOneShot(SoundManager.Instance.targethit);

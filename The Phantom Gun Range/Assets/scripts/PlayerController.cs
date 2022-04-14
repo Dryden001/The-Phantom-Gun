@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Updateammo(){
         UoI.UpdateAmmo(ammo,ammomax);
+        audioSource.PlayOneShot(SoundManager.Instance.reloadS);
     }
 	void Update ()
     {

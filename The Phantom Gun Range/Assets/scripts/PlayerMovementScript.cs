@@ -40,6 +40,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     private endUI EUI;
     private UI Gui;
+    public differentsoundtracks backsound;
 
     public GameObject neolights;
     
@@ -154,12 +155,14 @@ void CapsuleFollowHeadset(){
         gunheld = true;
         if(neolights != null){
             neolights.SetActive(true);
+            backsound.playgun();
         }
     }
     public void GunNothel(){
         gunheld = false;
         if(neolights != null){
             neolights.SetActive(false);
+            backsound.playnotgun();
         }
     }
 

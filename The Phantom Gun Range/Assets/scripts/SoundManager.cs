@@ -11,6 +11,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip gunFire;
     public AudioClip targethit;
     public AudioClip Buttonpress;
+    public AudioClip reloadS;
+    
     //audio: gun sound, target hit sound, and button sound
     
     // Start is called before the first frame update

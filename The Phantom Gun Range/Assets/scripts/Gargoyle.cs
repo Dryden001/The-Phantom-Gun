@@ -7,8 +7,15 @@ public class Gargoyle : MonoBehaviour
 {
     private NavMeshAgent agent;
     public GameObject player;
-    private string gargoylestate = "search";
+    public string gargoylestate = "idle";
     public Animator gargoyleanim;
+
+    private endUI EUI;
+    void Awake(){
+        EUI = GameObject.FindObjectOfType<endUI> ();
+        
+        //find end game UI
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -25,23 +32,24 @@ public class Gargoyle : MonoBehaviour
             idle();
         }else if(gargoylestate == "search"){
             search();
-        }else if(gargoylestate == "reached"){
-            reached();
         }
     }
     private void idle(){
-        if(Vector3.Distance(this.transform.position, player.transform.position) >= 1){
+        if(Vector3.Distance(new Vector3(this.transform.position.x , 0,this.transform.position.z), new Vector3(player.transform.position.x, 0, player.transform.position.z)) >= 2){
             gargoylestate = "search";
             gargoyleanim.SetInteger("Gargoyleanimstate", 1);
         }
     }
     private void search(){
-        agent.destination = player.transform.position;
-        if(Vector3.Distance(this.transform.position, player.transform.position) < 1){
-            gargoylestate = "reached";
+        if(gargoyleanim.GetCurrentAnimatorStateInfo(0).IsName("fly")){
+            agent.destination = player.transform.position;
+        }
+        
+        if(Vector3.Distance(new Vector3(this.transform.position.x , 0,this.transform.position.z), new Vector3(player.transform.position.x, 0, player.transform.position.z)) < 2){
+            gargoylestate = "idle";
+            gargoyleanim.SetInteger("Gargoyleanimstate", 0);
+            EUI.home();
         }
     }
-    private void reached(){
-        gargoyleanim.SetInteger("Gargoyleanimstate", 0);
-    }
+    
 }
