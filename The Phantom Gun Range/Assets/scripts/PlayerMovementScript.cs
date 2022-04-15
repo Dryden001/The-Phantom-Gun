@@ -43,6 +43,7 @@ public class PlayerMovementScript : MonoBehaviour
     public differentsoundtracks backsound;
 
     public GameObject neolights;
+    public GameObject gargoylemesh;
     
     void Awake(){
         EUI = GameObject.FindObjectOfType<endUI> ();
@@ -55,6 +56,7 @@ public class PlayerMovementScript : MonoBehaviour
         rig = GetComponent<XRRig>();
         
         VRstart();
+        gargoylemesh.GetComponent<Renderer>().enabled = false;
     }
     void VRstart(){
         deviceLeftmove = InputDevices.GetDeviceAtXRNode(inputSourceLeft);
@@ -156,6 +158,7 @@ void CapsuleFollowHeadset(){
         if(neolights != null){
             neolights.SetActive(true);
             backsound.playgun();
+            gargoylemesh.GetComponent<Renderer>().enabled = true;
         }
     }
     public void GunNothel(){
@@ -163,6 +166,7 @@ void CapsuleFollowHeadset(){
         if(neolights != null){
             neolights.SetActive(false);
             backsound.playnotgun();
+            gargoylemesh.GetComponent<Renderer>().enabled = false;
         }
     }
 
