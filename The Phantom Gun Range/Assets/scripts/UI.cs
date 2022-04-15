@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,9 +24,8 @@ public class UI : MonoBehaviour
     float msec;
     float sec;
     float min;
-    float hmsec;
-    float hsec;
-    float hmin;
+    float hmsec; float hsec; float hmin;
+    float ohmsec; float ohsec; float ohmin;
     public string gamescore;
     string ghscore;
     bool bsave;
@@ -108,6 +107,7 @@ public class UI : MonoBehaviour
                 }
             }
         }
+        
         if(bsave){
             SaveGame();
         }
@@ -126,10 +126,17 @@ public class UI : MonoBehaviour
             save.highscoremin = min;
             save.highscoresec = sec;
             save.highscoremsec = msec;
+            save.Shighscoremin = ohmin;
+            save.Shighscoresec = ohsec;
+            save.Shighscoremsec = ohmsec;
+
         }else if(scene.name == "Story"){
             save.Shighscoremin = min;
             save.Shighscoresec = sec;
             save.Shighscoremsec = msec;
+            save.highscoremin = ohmin;
+            save.highscoresec = ohsec;
+            save.highscoremsec = ohmsec;
         }
         hmin = min;
         hsec = sec;
@@ -161,10 +168,24 @@ public class UI : MonoBehaviour
                 hmin = save.highscoremin;
                 hsec = save.highscoresec;
                 hmsec = save.highscoremsec;
+                ohmin = save.Shighscoremin;
+                ohsec = save.Shighscoresec;
+                ohmsec = save.Shighscoremsec;
+                
             }else if(scene.name == "Story"){
                 hmin = save.Shighscoremin;
                 hsec = save.Shighscoresec;
                 hmsec = save.Shighscoremsec;
+                ohmin = save.highscoremin;
+                ohsec = save.highscoresec;
+                ohmsec = save.highscoremsec;
+            }
+            if(hmin == 0 && hsec == 0 && hmsec ==0){
+                Debug.Log("No saved data");
+                hmin = 99;
+                hsec = 99;
+                hmsec = 99;
+                
             }
             Debug.Log("Game Loaded");
         }else{
@@ -172,7 +193,8 @@ public class UI : MonoBehaviour
             hsec = 99;
             hmsec = 99;
             Debug.Log("No game saved!");
-        }   
+        }  
+        //Debug.Log("game score" + save.highscoremin+ ":" + save.highscoresec + ":" + save.highscoremsec + " Story score" + save.Shighscoremin+ ":" + save.Shighscoresec + ":" + save.Shighscoremsec); 
     }
 
 

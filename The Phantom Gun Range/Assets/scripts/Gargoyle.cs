@@ -9,11 +9,14 @@ public class Gargoyle : MonoBehaviour
     public GameObject player;
     public string gargoylestate = "idle";
     public Animator gargoyleanim;
+    
 
     private endUI EUI;
+    private PlayerController PC;
+
     void Awake(){
         EUI = GameObject.FindObjectOfType<endUI> ();
-        
+        PC = GameObject.FindObjectOfType<PlayerController> ();
         //find end game UI
     }
     // Start is called before the first frame update
@@ -66,6 +69,7 @@ public class Gargoyle : MonoBehaviour
 
     public GameObject deathnote;
     IEnumerator died(){
+        PC.isplaying = false;
         deathnote.SetActive(true);
         //Time.timeScale = 0;
         yield return new WaitForSeconds(1f);

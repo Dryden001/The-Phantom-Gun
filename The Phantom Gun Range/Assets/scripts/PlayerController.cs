@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     
 
     //Stops game at the end
-    private bool isplaying = true;
+    public bool isplaying = true;
 
     //sound
     private AudioSource audioSource;
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
 	}
     
 	public void shoot (){
-        if(ammo != 0){ //can shoot?
+        if(ammo != 0 && isplaying){ //can shoot?
                     //shot = true;
                     fireBullet(); //invokes bullet
                     --ammo;
