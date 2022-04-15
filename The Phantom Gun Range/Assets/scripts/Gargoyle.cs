@@ -50,9 +50,11 @@ public class Gargoyle : MonoBehaviour
         }
         
         if(Vector3.Distance(new Vector3(this.transform.position.x , 0,this.transform.position.z), new Vector3(player.transform.position.x, 0, player.transform.position.z)) < 3){
-            gargoylestate = "idle";
-            gargoyleanim.SetInteger("Gargoyleanimstate", 0);
-            StartCoroutine(died());
+            if(Mathf.Abs(this.transform.position.y - player.transform.position.y) < 6){
+                gargoylestate = "idle";
+                gargoyleanim.SetInteger("Gargoyleanimstate", 0);
+                StartCoroutine(died());
+            }
         }
     }
     

@@ -46,14 +46,14 @@ void Awake(){
             
             //agent.destination = gunpos.transform.position;
             
-            Debug.Log(gunpos.transform.position);
+            //Debug.Log(gunpos.transform.position);
         }     
         
         gunpos2d = new Vector3(gunpos.transform.position.x, this.transform.position.y, gunpos.transform.position.z);
 
         if(Vector3.Distance(this.transform.position, gunpos2d) < 1 && bulletstate != "shot"){
             
-            Debug.Log(bulletstate);  
+            //Debug.Log(bulletstate);  
             //bulletstate = "loaded";
             //this.transform.position = new Vector3(0,-30, 0);
             //agent.destination = this.transform.position;

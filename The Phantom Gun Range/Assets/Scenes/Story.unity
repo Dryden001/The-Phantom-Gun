@@ -10221,6 +10221,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8659943070623925175, guid: 359caedc90e82f3468c8d88a9f2be3e4, type: 3}
+--- !u!1 &1165112057 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6853017174646820509, guid: 3e3d360084626a340a9c0e3dc771eda9,
+    type: 3}
+  m_PrefabInstance: {fileID: 2607482944077982571}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1170670585 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2607482945064102034, guid: 3e3d360084626a340a9c0e3dc771eda9,
@@ -22226,6 +22232,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 822071806764746119, guid: 3e3d360084626a340a9c0e3dc771eda9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2607482943591926822, guid: 3e3d360084626a340a9c0e3dc771eda9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -23992,6 +24003,7 @@ MonoBehaviour:
   player: {fileID: 2607482944077982572}
   gargoylestate: idle
   gargoyleanim: {fileID: 5559874213297767359}
+  deathnote: {fileID: 1165112057}
 --- !u!82 &5559874213297767361
 AudioSource:
   m_ObjectHideFlags: 0

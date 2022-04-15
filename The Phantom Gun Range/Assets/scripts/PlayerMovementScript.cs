@@ -56,7 +56,7 @@ public class PlayerMovementScript : MonoBehaviour
         rig = GetComponent<XRRig>();
         
         VRstart();
-        gargoylemesh.GetComponent<Renderer>().enabled = false;
+        if(neolights != null)gargoylemesh.GetComponent<Renderer>().enabled = false;
     }
     void VRstart(){
         deviceLeftmove = InputDevices.GetDeviceAtXRNode(inputSourceLeft);
