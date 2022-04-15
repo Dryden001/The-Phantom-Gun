@@ -57,7 +57,7 @@ public class Gargoyle : MonoBehaviour
                 gargoylestate = "idle";
                 gargoyleanim.SetInteger("Gargoyleanimstate", 0);
                 StartCoroutine(died());
-            }
+            }else{Debug.Log("Heightissue");}
         }
     }
     
