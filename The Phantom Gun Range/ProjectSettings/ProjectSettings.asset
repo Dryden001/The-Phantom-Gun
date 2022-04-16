@@ -131,7 +131,6 @@ PlayerSettings:
   preloadedAssets:
   - {fileID: 5881924570399169279, guid: f6e7ee40793f55d47904eb9f47960f70, type: 2}
   - {fileID: 11400000, guid: a6248d22af7bada45ae1a0291e4c5e91, type: 2}
-  - {fileID: 0}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -605,11 +604,12 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: Template_3D
   metroPackageVersion: 
-  metroCertificatePath: 
+  metroCertificatePath: D:\school\GIMM\gimm 350\AR_VR\The-Phantom-Gun\The Phantom
+    Gun Range\Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: John Skogsberg
+  metroCertificateIssuer: John Skogsberg
+  metroCertificateNotAfter: 00a31dcae270d901
   metroApplicationDescription: Template_3D
   wsaImages: {}
   metroTileShortName: 
